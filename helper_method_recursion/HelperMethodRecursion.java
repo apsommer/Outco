@@ -1,36 +1,56 @@
 package com.sommerengineering.library.helper_method_recursion;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HelperMethodRecursion {
 
     public static void main(String[] args) {
 
-        String input = "";
-        System.out.println(compute(input));
+        int[] input = {};
+        compute(input);
+        for (int[] pair : output) {
+            System.out.print("[" + pair[0] + " " + pair[1] + "] ");
+        }
     }
 
-    static String output = "";
+    ///////////////////////////////////////////
 
-    public static String compute(String str) {
+    // member variables track state
+    static int[][] output;
+    static int j;
 
-        // catch trivial inputs
-        if (str.isEmpty()) return str;
-        if (str.length() == 1) return str;
+    public static int[][] compute(int[] arr) {
+
+        // instantiate variables
+        int size = arr.length/2;
+        if (arr.length % 2 == 1) size ++; // odd number needs one extra int[]
+        output = new int[size][2];
+        j = 0;
 
         // recurse
-        helper(str);
+        helper(arr, 0);
         return output;
     }
 
-    private static String helper(String str) {
+    private static int[] helper(int[] arr, int i) {
 
-        // base case
-        if (str.length() < 2) {
-            output += str;
-            return str;
+        // base cases
+        if (arr.length == 0) {
+            return arr;
+        }
+        if (arr.length - i == 1) {
+            output[j] = new int[] {arr[i], -1};
+            return arr;
+        } else if (arr.length - i == 2) {
+            output[j] = new int[] {arr[i], arr[i+1]};
+            return arr;
         }
 
-        output += str.charAt(str.length()-1);
-        str = str.substring(0, str.length() - 1);
-        return helper(str);
+        // recursive case
+        output[j] = new int[]{arr[i], arr[i+1]};
+        j ++;
+        i += 2;
+        return helper(arr, i);
     }
 }
