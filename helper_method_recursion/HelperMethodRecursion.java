@@ -4,30 +4,33 @@ public class HelperMethodRecursion {
 
     public static void main(String[] args) {
 
-//        int[] input = {1,2,3};
-//        compute(input);
-
-//        int[] input = {};
-//        compute(input);
-
-        int[] input = {5};
-        compute(input);
+        String input = "";
+        System.out.println(compute(input));
     }
 
-    static int size;
+    static String output = "";
 
-    public static void compute(int[] arr) {
-        size = arr.length;
-        computeHelper(arr, 0);
+    public static String compute(String str) {
+
+        // catch trivial inputs
+        if (str.isEmpty()) return str;
+        if (str.length() == 1) return str;
+
+        // recurse
+        helper(str);
+        return output;
     }
 
-    public static void computeHelper(int[] arr, int index) {
+    private static String helper(String str) {
 
         // base case
-        if (index == size) return;
+        if (str.length() < 2) {
+            output += str;
+            return str;
+        }
 
-        System.out.print(arr[index] +"\n");
-        index ++;
-        computeHelper(arr, index);
+        output += str.charAt(str.length()-1);
+        str = str.substring(0, str.length() - 1);
+        return helper(str);
     }
 }

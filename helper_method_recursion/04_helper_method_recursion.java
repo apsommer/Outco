@@ -86,11 +86,17 @@ class PrintArray {
 class PrintReverse {
 
   public static void compute(int[] arr) {
-    // YOUR WORK HERE
+    computeHelper(arr, arr.length - 1);
   }
 
-  private static void traverse(int[] arr, int index) {
-    // YOUR WORK HERE
+  public static void computeHelper(int[] arr, int index) {
+
+    // base case
+    if (index < 0) return;
+
+    System.out.print(arr[index] +"\n");
+    index --;
+    computeHelper(arr, index);
   }
 }
 
@@ -106,9 +112,30 @@ class PrintReverse {
  */
 class ReverseString {
 
+  static String output = "";
+
   public static String compute(String str) {
-    // YOUR WORK HERE
-    return "";
+
+    // catch trivial inputs
+    if (str.isEmpty()) return str;
+    if (str.length() == 1) return str;
+
+    // recurse
+    helper(str);
+    return output;
+  }
+
+  private static String helper(String str) {
+
+    // base case
+    if (str.length() < 2) {
+      output += str;
+      return str;
+    }
+
+    output += str.charAt(str.length()-1);
+    str = str.substring(0, str.length() - 1);
+    return helper(str);
   }
 
 }
