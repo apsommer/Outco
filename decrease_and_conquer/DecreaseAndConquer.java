@@ -1,4 +1,4 @@
-package com.sommerengineering.library;
+package com.sommerengineering.library.decrease_and_conquer;
 
 /*
 You may have heard of a foundational algorithm technique called Divide and Conquer. In this section,
