@@ -1,8 +1,9 @@
-package com.sommerengineering.library.decrease_and_conquer;/*
+package com.sommerengineering.library.decrease_and_conquer;
+
+/*
  * Homework 03 - Decrease and Conquer
  * Utilize the decrease and conquer pattern to solve these problems.
  */
-
 
 import java.io.*;
 import java.util.*;
@@ -30,9 +31,38 @@ class Problems {
  */
 
   public static int numberOfOnes(int[] arr) {
-    // YOUR WORK HERE
+
+    // binary search algorithm to find break point of [ ..., 0, 1, ... ]
+
+    int start = 0;
+    int end = arr.length - 1;
+    int mid;
+
+    while (start <= end) {
+
+      mid = (start + end) / 2;
+
+      if (arr[mid] == 0) {
+
+        // catch array of all zeros
+        if (mid + 1 == arr.length) return 0;
+
+        // check if we are at the break point ..., 0, 1, ...
+        if (arr[mid + 1] == 1) return arr.length - (mid + 1);
+        else start = mid + 1;
+      } else {
+
+        // catch array of all ones
+        if (mid - 1 == -1) return arr.length;
+
+        // check if we are at the break point ..., 0, 1, ...
+        if (arr[mid - 1] == 0) return arr.length - mid;
+        else end = mid - 1;
+      }
+    }
+
     return -1;
-  }
+    }
 
 /*
  * Closest Value

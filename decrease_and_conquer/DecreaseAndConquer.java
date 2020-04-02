@@ -155,11 +155,11 @@ public class DecreaseAndConquer {
         final long start = System.nanoTime();
 
         // Example 1: Binary Search using recursion
-        int i = binarySearch(new int[]{1,3,4,5,6,7,8,10,11,13,15,17,20,22}, 17);
+        int i = binarySearch(new int[]{1, 3, 4, 5, 6, 7, 8, 10, 11, 13, 15, 17, 20, 22}, 17);
         System.out.println("binarySearch: " + i); // 11
 
         // Example 1: Binary Search using iteration
-        i = binarySearchIteration(new int[]{1,3,4,5,6,7,8,10,11,13,15,17,20,22}, 17);
+        i = binarySearchIteration(new int[]{1, 3, 4, 5, 6, 7, 8, 10, 11, 13, 15, 17, 20, 22}, 17);
         System.out.println("binarySearchIteration: " + i); // 11
 
         // Example 2: Greatest Common Divisor (GCD) using recursion
@@ -171,7 +171,7 @@ public class DecreaseAndConquer {
         System.out.println("GCDIteration: " + i); // 26
 
         // Challenge 1: Number of Ones is a Sorted Bit Array
-        i = numberOfOnes(new int[]{0,0,0,1,1,1,1,1,1,1,1}); // 8
+        i = numberOfOnes(new int[]{1,1,1,1,1,1}); // 8
         System.out.println("NumberOfOnes: " + i);
 
         // clock execution time
@@ -192,13 +192,11 @@ public class DecreaseAndConquer {
         if (current == target) return i; // base case: target found
 
         else if (target < current) { // search left subarray
-            if (i - range/2 < 0) return -1; // base case: array bounds exceeded
-            return binaryRecursion(arr, target, i - range/2, range/2);
-        }
-
-        else { // search right subarray
-            if (i + range/2 >= arr.length) return -1; // base case: array bounds exceeded
-            return binaryRecursion(arr, target, i + range/2, range/2);
+            if (i - range / 2 < 0) return -1; // base case: array bounds exceeded
+            return binaryRecursion(arr, target, i - range / 2, range / 2);
+        } else { // search right subarray
+            if (i + range / 2 >= arr.length) return -1; // base case: array bounds exceeded
+            return binaryRecursion(arr, target, i + range / 2, range / 2);
         }
     }
 
@@ -211,7 +209,7 @@ public class DecreaseAndConquer {
 
         while (start <= end) {
 
-            mid = (start + end)/2;
+            mid = (start + end) / 2;
 
             if (arr[mid] == target) return mid;
             else if (arr[mid] < target) start = mid + 1;
@@ -242,7 +240,7 @@ public class DecreaseAndConquer {
     // Challenge 1: Number of Ones is a Sorted Bit Array at O(log(n)) complexity
     private static int numberOfOnes(int[] arr) {
 
-        // binary search algorithm to find break point of ..., 0, 1, ...
+        // binary search algorithm to find break point of [ ..., 0, 1, ... ]
 
         int start = 0;
         int end = arr.length - 1;
@@ -250,18 +248,23 @@ public class DecreaseAndConquer {
 
         while (start <= end) {
 
-            mid = (start + end)/2;
+            mid = (start + end) / 2;
 
             if (arr[mid] == 0) {
 
-                // check if we are at the break point ..., 0, 1, ...
-                if (arr[mid+1] == 1) return arr.length - (mid + 1);
-                else start = mid + 1;
-            }
-            else {
+                // catch array of all zeros
+                if (mid + 1 == arr.length) return 0;
 
                 // check if we are at the break point ..., 0, 1, ...
-                if (arr[mid-1] == 0)  return arr.length - mid;
+                if (arr[mid + 1] == 1) return arr.length - (mid + 1);
+                else start = mid + 1;
+            } else {
+
+                // catch array of all ones
+                if (mid - 1 == -1) return arr.length;
+
+                // check if we are at the break point ..., 0, 1, ...
+                if (arr[mid - 1] == 0) return arr.length - mid;
                 else end = mid - 1;
             }
         }
