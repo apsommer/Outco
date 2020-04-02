@@ -6,27 +6,32 @@
  *
  */
 
+package com.sommerengineering.library.helper_method_recursion;
+
 import java.io.*;
 import java.util.*;
 
 
 /**
  * 1a. What is the term when the recursive call invokes itself more than once.
- *
+ * Multiple recursion
  *
  */
 
 
 /**
  * 1b. List the steps involved to build a Helper Method Recursion algorithm.
- *
- *
+ * Instantiate variables (track state, results, ...)
+ * Return results
+ * Instantiate helper method and invoke it
+ * Define the base case
+ * Define the recursive case
  */
 
 
 /**
  * 1c. Should the recursive case or base case typically be tackled first?
- *
+ * Base case
  *
  */
 
@@ -46,12 +51,21 @@ import java.util.*;
  */
 class PrintArray {
 
+  static int size;
+
   public static void compute(int[] arr) {
-    // YOUR WORK HERE
+    size = arr.length;
+    computeHelper(arr, 0);
   }
 
   public static void computeHelper(int[] arr, int index) {
-    // YOUR WORK HERE
+
+    // base case
+    if (index == size) return;
+
+    System.out.print(arr[index] +"\n");
+    index ++;
+    computeHelper(arr, index);
   }
 }
 
