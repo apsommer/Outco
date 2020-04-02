@@ -31,8 +31,16 @@ class Problems {
    */
 
    public static ArrayList unique(int[] arr) {
-      // YOUR WORK HERE
-      return new ArrayList<>();
+
+      ArrayList<Integer> output = new ArrayList<>();
+
+      int current;
+      for (int i = 0; i < arr.length; i ++) {
+          current = arr[i];
+          if (!output.contains(current)) output.add(current);
+      }
+
+      return output;
    }
 
    /**
@@ -46,7 +54,7 @@ class Problems {
     *
     * Constraints
     *
-    * Capital and lower case versions of the same word should be counted is the same word.
+    * Capital and lower case versions of the same word should be counted as the same word.
     *
     * Remove punctuations from all words.
     *
@@ -61,8 +69,36 @@ class Problems {
     */
 
     public static HashMap wordCount(String sentence) {
-      // YOUR WORK HERE
-      return new HashMap<String, Integer>();
+
+        // initialize output
+        HashMap<String, Integer> map = new HashMap<>();
+
+        // return empty hashmap if the input is also empty
+        if (sentence.isEmpty()) return map;
+
+        // strip out punctuation and format to lowercase
+        sentence = sentence
+                .replace(".", "")
+                .replace(",", "")
+                .replace("'", "")
+                .replace("!", "")
+                .replace("?", "")
+                .toLowerCase();
+
+        // split the sting into constituent words using " " delimiter
+        String[] words = sentence.split(" ");
+
+        // add the word and its frequency to the map
+        int count;
+        for (String word : words) {
+
+            if (map.containsKey(word)) count = map.get(word) + 1;
+            else count = 1;
+
+            map.put(word, count);
+        }
+
+        return map;
     }
 
   /**
