@@ -245,13 +245,23 @@ class Flatten {
  */
 class Power {
 
+  private static int output;
+
   public static int compute(int a, int b) {
-    // YOUR WORK HERE
-    return -1;
+
+    output = a;
+    return helper(b);
   }
 
-}
+  private static int helper(int b) {
 
+    if (b == 0) {
+      return 1;
+    }
+
+    return output * helper(b-1);
+  }
+}
 
 /**
  * 2g. Merge two sorted arrays using the Helper Method Recursion

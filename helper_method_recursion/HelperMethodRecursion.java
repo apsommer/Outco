@@ -9,36 +9,36 @@ public class HelperMethodRecursion {
 
     public static void main(String[] args) {
 
-        int matrix[][] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        compute(matrix);
-        for (int i = 0; i < output.length; i ++) {
-            System.out.print(output[i] + ", ");
-        }
+        System.out.print(compute(10, 6));
     }
 
     ///////////////////////////////////////////
 
-    private static List<Integer> list;
-    private static int[] output;
+    /**
+     * 2f. Given a base and an exponent, create a method to find the power using
+     *     Helper Method Recursion
+     *
+     * Input:   Two Integers, base and exponent
+     * Output:  Integer
+     *
+     * Example: Power.compute(3, 4) => 81
+     */
 
-    private static int[] compute(int[][] matrix) {
+    private static int output;
 
-        list = new ArrayList<>();
+    public static int compute(int a, int b) {
 
-        // use recursion for each subarray
-        for (int[] chunk : matrix) helper(chunk);
-
-        output = new int[list.size()]; // list now contains the full result
-        for (int i = 0; i < output.length; i ++) output[i] = list.get(i);
-
-        return output;
+        output = a;
+        return helper(b);
     }
 
-    private static void helper(int[] chunk) {
+    private static int helper(int b) {
 
-        if (chunk.length == 0) return;
-        list.add(chunk[0]);
-        helper(Arrays.copyOfRange(chunk, 1, chunk.length)); // tail recursion
+        if (b == 0) {
+            return 1;
+        }
+
+        return output * helper(b-1);
     }
 }
 
