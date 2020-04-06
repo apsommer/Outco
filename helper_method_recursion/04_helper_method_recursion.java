@@ -277,14 +277,39 @@ class Power {
  */
 class Merge {
 
+  static List<Integer> list;
+
   public static int[] compute(int[] arr1, int[] arr2) {
-    // YOUR WORK HERE
-    return new int[0];
+
+    // catch trivial cases
+    if (arr1.length == 0) return arr2;
+    if (arr2.length == 0) return arr1;
+
+    // begin the output list as the sorted first array
+    list = new ArrayList<>();
+    for (int i : arr1) list.add(i);
+
+    // call the recursive helper to place each new element from the second array
+    for (int j : arr2) helper(j, list.size() - 1);
+
+    // convert the list to int[]
+    int[] output = new int[list.size()];
+    for (int i = 0; i < output.length; i ++) output[i] = list.get(i);
+    return output;
   }
 
+  private static void helper(int j, int index) {
+
+    // base case: new element is in correct sorted position
+    if (j > list.get(index)) {
+      list.add(index + 1, j);
+      return;
+    }
+
+    // decrement the index
+    helper(j, index - 1);
+  }
 }
-
-
 
 
 ////////////////////////////////////////////////////////////

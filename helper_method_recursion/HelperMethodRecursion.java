@@ -8,37 +8,58 @@ import java.util.List;
 public class HelperMethodRecursion {
 
     public static void main(String[] args) {
-
-        System.out.print(compute(10, 6));
+        int[] nums1 = {1, 4, 7};
+        int[] nums2 = {2, 3, 6, 9};
+        int[] merged = compute(nums1, nums2);
+        for (int i : merged) System.out.print(i + ", ");
     }
 
     ///////////////////////////////////////////
 
     /**
-     * 2f. Given a base and an exponent, create a method to find the power using
-     *     Helper Method Recursion
+     * 2g. Merge two sorted arrays using the Helper Method Recursion
      *
-     * Input:   Two Integers, base and exponent
-     * Output:  Integer
+     * Input:   Two Integer Arrays, both sorted
+     * Output:  Integer Array, sorted
      *
-     * Example: Power.compute(3, 4) => 81
+     * Example: int[] nums1 = {1, 4, 7};
+     *          int[] nums2 = {2, 3, 6, 9};
+     *
+     *          Merge.compute(nums1, nums2) =>
+     *          { 1, 2, 3, 4, 6, 7, 9 }
      */
 
-    private static int output;
+    static List<Integer> list;
 
-    public static int compute(int a, int b) {
+    public static int[] compute(int[] arr1, int[] arr2) {
 
-        output = a;
-        return helper(b);
+        // catch trivial cases
+        if (arr1.length == 0) return arr2;
+        if (arr2.length == 0) return arr1;
+
+        // begin the output list as the sorted first array
+        list = new ArrayList<>();
+        for (int i : arr1) list.add(i);
+
+        // call the recursive helper to place each new element from the second array
+        for (int j : arr2) helper(j, list.size() - 1);
+
+        // convert the list to int[]
+        int[] output = new int[list.size()];
+        for (int i = 0; i < output.length; i ++) output[i] = list.get(i);
+        return output;
     }
 
-    private static int helper(int b) {
+    private static void helper(int j, int index) {
 
-        if (b == 0) {
-            return 1;
+        // base case: new element is in correct sorted position
+        if (j > list.get(index)) {
+            list.add(index + 1, j);
+            return;
         }
 
-        return output * helper(b-1);
+        // decrement the index
+        helper(j, index - 1);
     }
 }
 
