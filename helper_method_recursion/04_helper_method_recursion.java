@@ -210,14 +210,29 @@ class ArrayPairs {
  */
 class Flatten {
 
-  public static int[] compute(int[][] matrix) {
-    // YOUR WORK HERE
-    return new int[0];
+  private static List<Integer> list;
+  private static int[] output;
+
+  static int[] compute(int[][] matrix) {
+
+    list = new ArrayList<>();
+
+    // use recursion for each subarray
+    for (int[] chunk : matrix) helper(chunk);
+
+    output = new int[list.size()]; // list now contains the full result
+    for (int i = 0; i < output.length; i ++) output[i] = list.get(i);
+
+    return output;
   }
 
+  private static void helper(int[] chunk) {
 
+    if (chunk.length == 0) return;
+    list.add(chunk[0]);
+    helper(Arrays.copyOfRange(chunk, 1, chunk.length)); // tail recursion
+  }
 }
-
 
 /**
  * 2f. Given a base and an exponent, create a method to find the power using

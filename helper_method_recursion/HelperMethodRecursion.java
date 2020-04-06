@@ -1,56 +1,44 @@
 package com.sommerengineering.library.helper_method_recursion;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class HelperMethodRecursion {
 
     public static void main(String[] args) {
 
-        int[] input = {};
-        compute(input);
-        for (int[] pair : output) {
-            System.out.print("[" + pair[0] + " " + pair[1] + "] ");
+        int matrix[][] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        compute(matrix);
+        for (int i = 0; i < output.length; i ++) {
+            System.out.print(output[i] + ", ");
         }
     }
 
     ///////////////////////////////////////////
 
-    // member variables track state
-    static int[][] output;
-    static int j;
+    private static List<Integer> list;
+    private static int[] output;
 
-    public static int[][] compute(int[] arr) {
+    private static int[] compute(int[][] matrix) {
 
-        // instantiate variables
-        int size = arr.length/2;
-        if (arr.length % 2 == 1) size ++; // odd number needs one extra int[]
-        output = new int[size][2];
-        j = 0;
+        list = new ArrayList<>();
 
-        // recurse
-        helper(arr, 0);
+        // use recursion for each subarray
+        for (int[] chunk : matrix) helper(chunk);
+
+        output = new int[list.size()]; // list now contains the full result
+        for (int i = 0; i < output.length; i ++) output[i] = list.get(i);
+
         return output;
     }
 
-    private static int[] helper(int[] arr, int i) {
+    private static void helper(int[] chunk) {
 
-        // base cases
-        if (arr.length == 0) {
-            return arr;
-        }
-        if (arr.length - i == 1) {
-            output[j] = new int[] {arr[i], -1};
-            return arr;
-        } else if (arr.length - i == 2) {
-            output[j] = new int[] {arr[i], arr[i+1]};
-            return arr;
-        }
-
-        // recursive case
-        output[j] = new int[]{arr[i], arr[i+1]};
-        j ++;
-        i += 2;
-        return helper(arr, i);
+        if (chunk.length == 0) return;
+        list.add(chunk[0]);
+        helper(Arrays.copyOfRange(chunk, 1, chunk.length)); // tail recursion
     }
 }
+
