@@ -1,3 +1,5 @@
+package com.sommerengineering.library.dynamic_programming;
+
 /**
  *  Homework 05 - Dynamic Programming: Tabulation/Memoization
  *
@@ -18,9 +20,7 @@
  *      					solutions of its subproblems.
  */
 
-import java.util.*;
-
-class Problems {
+class Problems05 {
 
   /*
   *  1. Coin Sum
@@ -61,9 +61,30 @@ class Problems {
   // Time Complexity:
   // Auxiliary Space Complexity:
 
+  static int count;
+
   public static int coinSum(int[] coins, int total) {
-    //YOUR WORK HERE
-    return -1;
+
+    count = 0;
+    helper(coins, total, 0);
+    return count;
+  }
+
+  private static int helper(int[] coins, int total, int index) {
+
+    if (total < 0) return 0;
+    if (total == 0) return 1;
+
+    count = 0; // reset counter because we are gathering "everything below this level"
+    for (int i = index; i < coins.length; i ++) {
+
+      int coin = coins[i];
+      count += helper(coins, total - coin, i);
+
+      // passing third parameter (index) is the key step to prevent duplicates, by logic
+      // "only use this coin and the ones that follow it"
+    }
+    return count;
   }
 
 }
@@ -77,7 +98,7 @@ class Problems {
 ////////////////////////////////////////////////////////////
 
 // use the Main class to run the test cases
-class Main {
+class Main05 {
   private int[] testCount;
 
   // an interface to perform tests
@@ -94,28 +115,28 @@ class Main {
     // tests are in the form as shown
     assertTest(testCount, "should work for first example case", new Test() {
       public boolean execute() {
-        int output = Problems.coinSum(new int[]{1,2,3}, 4);
+        int output = Problems05.coinSum(new int[]{1,2,3}, 4);
         return output == 4;
       }
     });
 
     assertTest(testCount, "should work for second example case", new Test() {
       public boolean execute() {
-        int output = Problems.coinSum(new int[]{2,5,3,6}, 10);
+        int output = Problems05.coinSum(new int[]{2,5,3,6}, 10);
         return output == 5;
       }
     });
 
     assertTest(testCount, "should work for a single coin", new Test() {
       public boolean execute() {
-        int output = Problems.coinSum(new int[]{2}, 10);
+        int output = Problems05.coinSum(new int[]{2}, 10);
         return output == 1;
       }
     });
 
     assertTest(testCount, "should work for a single coin", new Test() {
       public boolean execute() {
-        int output = Problems.coinSum(new int[]{2}, 10);
+        int output = Problems05.coinSum(new int[]{2}, 10);
         return output == 1;
       }
     });
