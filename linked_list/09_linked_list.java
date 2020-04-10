@@ -56,48 +56,88 @@ package com.sommerengineering.library.linked_list;
  *                          Output:    {Boolean}
  */
 
-import java.util.*;
 
 class ListNode {
+
   public int value;
   public ListNode next;
 
   public ListNode(int value){
-    // YOUR WORK HERE
+    this.value = value;
   }
 }
 
-
 class LinkedList {
+
   public int length = 0;
   public ListNode head;
   public ListNode tail;
 
-  // Time Complexity:
-  // Auxiliary Space Complexity:
+  // Time Complexity: O(1)
+  // Auxiliary Space Complexity: O(1)
   public void append(int value){
-    // YOUR WORK HERE
+
+    ListNode node = new ListNode(value); // create new node with passed value
+    tail.next = node; // current tail.next becomes new node
+    tail = node; // move tail
+    length ++;
   }
 
-
-  // Time Complexity:
-  // Auxiliary Space Complexity:
+  // Time Complexity: O(N) to search for desired position, O(1) to insert
+  // Auxiliary Space Complexity: O(1)
   public void insert(int value, int index){
-    // YOUR WORK HERE
+
+    // create the new node
+    ListNode newNode = new ListNode(value);
+
+    length ++;
+
+    // catch empty list
+    if (head == null || tail == null) {
+      head = newNode;
+      tail = newNode;
+      return;
+    }
+
+    // move to desired position, assume head index is 0
+    ListNode node = head;
+    for (int i = 0; i < index - 1; i ++) {
+      node = node.next;
+    }
+
+    // set the correct pointers
+    ListNode temp = node.next; // save off node n+1
+    node.next = newNode; // insert new node
+    newNode.next = temp; // connect original n+1
   }
 
-
-  // Time Complexity:
-  // Auxiliary Space Complexity:
+  // Time Complexity: O(N) to search for desired position, O(1) to delete
+  // Auxiliary Space Complexity: O(1)
   public void delete(int index){
-    // YOUR WORK HERE
-  }
 
+    // move to desired position, assume head index is 0
+    ListNode node = head;
+    for (int i = 0; i < index - 1; i ++) {
+      node = node.next;
+    }
+
+    ListNode temp = node; // save off node at n-1
+    node = node.next.next; // get reference to n+1
+    temp.next = node; // next of n-1 becomes n+1
+
+    length --;
+  }
 
   // Time Complexity:
   // Auxiliary Space Complexity:
   public boolean contains(int value){
-    // YOUR WORK HERE
+
+    // loop through entire llist starting at head
+    ListNode node = head;
+    while (node != null) {
+      if (node.value == value) return true; // target found
+      node = node.next;
+    }
     return false;
   }
 }
