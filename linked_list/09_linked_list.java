@@ -85,23 +85,41 @@ class LinkedList {
 
   // Time Complexity: O(N) to search for desired position, O(1) to insert
   // Auxiliary Space Complexity: O(1)
-  public void insert(int value, int index){
+  public void insert(int value, int index) {
+
+    // catch bad index
+    if (index > length || index < 0) return;
 
     // create the new node
     ListNode newNode = new ListNode(value);
 
-    length ++;
-
-    // catch empty list
-    if (head == null || tail == null) {
+    // empty list
+    if (head == null) {
       head = newNode;
       tail = newNode;
+      length ++;
+      return;
+    }
+
+    // new node on head
+    if (index == 0) {
+      newNode.next = head;
+      head = newNode;
+      length ++;
+      return;
+    }
+
+    // new node on tail
+    if (index == length) {
+      tail.next = newNode;
+      tail = newNode;
+      length ++;
       return;
     }
 
     // move to desired position, assume head index is 0
     ListNode node = head;
-    for (int i = 0; i < index - 1; i ++) {
+    for (int i = 0; i < index; i ++) {
       node = node.next;
     }
 
@@ -109,6 +127,8 @@ class LinkedList {
     ListNode temp = node.next; // save off node n+1
     node.next = newNode; // insert new node
     newNode.next = temp; // connect original n+1
+    
+    length ++;
   }
 
   // Time Complexity: O(N) to search for desired position, O(1) to delete
@@ -117,7 +137,7 @@ class LinkedList {
 
     // move to desired position, assume head index is 0
     ListNode node = head;
-    for (int i = 0; i < index - 1; i ++) {
+    for (int i = 0; i < index; i ++) {
       node = node.next;
     }
 
@@ -138,7 +158,7 @@ class LinkedList {
       if (node.value == value) return true; // target found
       node = node.next;
     }
-    return false;
+    return false; // target not found
   }
 }
 
