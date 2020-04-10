@@ -78,9 +78,18 @@ class LinkedList {
   public void append(int value){
 
     ListNode node = new ListNode(value); // create new node with passed value
+    length ++;
+
+    // catch empty list
+    if (head == null) {
+      head = node;
+      tail = node;
+      return;
+    }
+
     tail.next = node; // current tail.next becomes new node
     tail = node; // move tail
-    length ++;
+
   }
 
   // Time Complexity: O(N) to search for desired position, O(1) to insert
@@ -91,43 +100,43 @@ class LinkedList {
     if (index > length || index < 0) return;
 
     // create the new node
-    ListNode newNode = new ListNode(value);
+    ListNode node = new ListNode(value);
 
     // empty list
     if (head == null) {
-      head = newNode;
-      tail = newNode;
+      head = node;
+      tail = node;
       length ++;
       return;
     }
 
     // new node on head
     if (index == 0) {
-      newNode.next = head;
-      head = newNode;
+      node.next = head;
+      head = node;
       length ++;
       return;
     }
 
     // new node on tail
     if (index == length) {
-      tail.next = newNode;
-      tail = newNode;
+      tail.next = node;
+      tail = node;
       length ++;
       return;
     }
 
     // move to desired position, assume head index is 0
-    ListNode node = head;
+    ListNode current = head;
     for (int i = 0; i < index; i ++) {
-      node = node.next;
+      current = current.next;
     }
 
     // set the correct pointers
-    ListNode temp = node.next; // save off node n+1
-    node.next = newNode; // insert new node
-    newNode.next = temp; // connect original n+1
-    
+    ListNode temp = current.next; // save off node n+1
+    current.next = node; // insert new node
+    node.next = temp; // connect original n+1
+
     length ++;
   }
 
