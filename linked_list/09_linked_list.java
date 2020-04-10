@@ -89,7 +89,6 @@ class LinkedList {
 
     tail.next = node; // current tail.next becomes new node
     tail = node; // move tail
-
   }
 
   // Time Complexity: O(N) to search for desired position, O(1) to insert
@@ -142,7 +141,25 @@ class LinkedList {
 
   // Time Complexity: O(N) to search for desired position, O(1) to delete
   // Auxiliary Space Complexity: O(1)
-  public void delete(int index){
+  public void delete(int index) {
+
+    // catch bad index
+    if (index > length || index < 0) return;
+
+    // catch list has only one element
+    if (length == 1) {
+      head = null;
+      tail = null;
+      length --;
+      return;
+    }
+
+    // catch delete head
+    if (index == 0) {
+      head = head.next;
+      length --;
+      return;
+    }
 
     // move to desired position, assume head index is 0
     ListNode node = head;
@@ -153,7 +170,6 @@ class LinkedList {
     ListNode temp = node; // save off node at n-1
     node = node.next.next; // get reference to n+1
     temp.next = node; // next of n-1 becomes n+1
-
     length --;
   }
 
