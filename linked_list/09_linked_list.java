@@ -56,7 +56,6 @@ package com.sommerengineering.library.linked_list;
  *                          Output:    {Boolean}
  */
 
-
 class ListNode {
 
   public int value;
@@ -173,8 +172,8 @@ class LinkedList {
     length --;
   }
 
-  // Time Complexity:
-  // Auxiliary Space Complexity:
+  // Time Complexity: O(N) worst case must access every node
+  // Auxiliary Space Complexity: O(1) references change on each iteration of while loop, therefore constant space for all N
   public boolean contains(int value){
 
     // loop through entire llist starting at head
