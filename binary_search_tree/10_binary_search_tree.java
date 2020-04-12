@@ -54,7 +54,7 @@ class TreeNode {
   public TreeNode right;
 
   public TreeNode(int value) {
-    // YOUR WORK HERE
+    this.value = value;
   }
 
 }
@@ -64,7 +64,7 @@ class BinarySearchTree {
   public int size;
 
   public BinarySearchTree() {
-    // YOUR WORK HERE
+    size = 0;
   }
 
 
