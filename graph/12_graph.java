@@ -99,11 +99,18 @@ class Graph {
     return false;
   }
 
-  //   Time Complexity:
-  //   Auxiliary Space Complexity:
+  //   Time Complexity: O(1) lookup into hashmap, O(1) to append item to list
+  //   Auxiliary Space Complexity: O(1)
   public boolean addEdge(Integer id1, Integer id2) {
-    // YOUR WORK HERE
-    return true;
+
+    // check both vertices id1 and id2 exist, then add the edge to id1 edge list
+    if (storage.containsKey(id1) && storage.containsKey(id2)) {
+      storage.get(id1).add(id2);
+      return true;
+    }
+
+    // vertex id1 does not exist, therefore edge not added
+    return false;
   }
 
   // Time Complexity:
