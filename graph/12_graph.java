@@ -109,15 +109,30 @@ class Graph {
       return true;
     }
 
-    // vertex id1 does not exist, therefore edge not added
+    // vertex id1 or id2 does not exist, therefore edge not added
     return false;
   }
 
   // Time Complexity:
   // Auxiliary Space Complexity:
   public boolean removeEdge(Integer id1, Integer id2) {
-    // YOUR WORK HERE
-    return true;
+
+    // check both vertices id1 and id2 exist, then remove the edge from id1 edge list
+    if (storage.containsKey(id1) && storage.containsKey(id2)) {
+
+      // get reference to the edge list for id1
+      List<Integer> edges = storage.get(id1);
+
+      // catch if id2 edge does not exist
+      if (!edges.contains(id2)) return false;
+
+      // edge id2 successfully removed from id1 edge list
+      else edges.remove(id2);
+      return true;
+    }
+
+    // vertex id1 or id2 does not exist, therefore edge not added
+    return false;
   }
 
   //   Time Complexity:
