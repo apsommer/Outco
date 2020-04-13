@@ -1,4 +1,6 @@
-package com.sommerengineering.library.binary_search_tree; /**
+package com.sommerengineering.library.binary_search_tree;
+
+/**
  *  Homework 10 - Binary Search Tree
  *
  *  Problem 1: TreeNode class
@@ -46,8 +48,6 @@ package com.sommerengineering.library.binary_search_tree; /**
  *                            Output:    {Boolean}
  */
 
-import java.util.*;
-
 class TreeNode {
   public int value;
   public TreeNode left;
@@ -67,13 +67,52 @@ class BinarySearchTree {
     size = 0;
   }
 
-
-  // Time Complexity:
-  // Auxiliary Space Complexity:
+  // Time Complexity: log(N) in the average case, since we traverse the number of levels in the tree, however it is linear
+  // O(N) in the worst case for an unbalanced binary tree (= linked list)
+  // Auxiliary Space Complexity: O(1) since we just have a collection of references and calculations, independent of N
   public void insert(int value) {
-    // YOUR WORK HERE
-  }
 
+    // create new node
+    TreeNode node = new TreeNode(value);
+
+    // increment tree size
+    size ++;
+
+    // catch empty list
+    if (root == null) {
+      root = node;
+      return;
+    }
+
+    // find the correct null child
+    TreeNode current = root;
+    while (true) {
+
+      // move right
+      if (node.value > current.value) {
+        if (current.right == null) {
+          current.right = node;
+          return;
+        }
+        else current = current.right;
+        continue;
+      }
+
+      // move left
+      if (node.value < current.value) {
+        if (current.left == null) {
+          current.left = node;
+          return;
+        }
+        current = current.left;
+        continue;
+      }
+
+      // duplicate
+      // this line is only reached if node.vale == current.value, therefore it is a duplicate
+      return;
+    }
+  }
 
   // Time Complexity:
   // Auxiliary Space Complexity:
