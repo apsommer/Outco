@@ -1,10 +1,10 @@
-package com.sommerengineering.library;
+package com.sommerengineering.library.linked_list;
 
-class Main {
+class Main2 {
 
     public static void main(String[] args) {
 
-        LinkedList linkedList= new LinkedList();
+        LList linkedList= new LList();
         linkedList.insert(5,0);
         linkedList.insert(10, 1);
 
@@ -14,27 +14,27 @@ class Main {
     }
 }
 
-class ListNode {
+class LNode {
 
     public int value;
-    public ListNode next;
+    public LNode next;
 
-    public ListNode(int value){
+    public LNode(int value){
         this.value = value;
     }
 }
 
-class LinkedList {
+class LList {
 
     public int length = 0;
-    public ListNode head;
-    public ListNode tail;
+    public LNode head;
+    public LNode tail;
 
     // Time Complexity: O(1)
     // Auxiliary Space Complexity: O(1)
     public void append(int value){
 
-        ListNode node = new ListNode(value); // create new node with passed value
+        LNode node = new LNode(value); // create new node with passed value
         length ++;
 
         // catch empty list
@@ -56,7 +56,7 @@ class LinkedList {
         if (index > length || index < 0) return;
 
         // create the new node
-        ListNode node = new ListNode(value);
+        LNode node = new LNode(value);
 
         // empty list
         if (head == null) {
@@ -83,13 +83,13 @@ class LinkedList {
         }
 
         // move to desired position, assume head index is 0
-        ListNode current = head;
+        LNode current = head;
         for (int i = 0; i < index; i ++) {
             current = current.next;
         }
 
         // set the correct pointers
-        ListNode temp = current.next; // save off node n+1
+        LNode temp = current.next; // save off node n+1
         current.next = node; // insert new node
         node.next = temp; // connect original n+1
 
@@ -119,12 +119,12 @@ class LinkedList {
         }
 
         // move to desired position, assume head index is 0
-        ListNode node = head;
+        LNode node = head;
         for (int i = 0; i < index; i ++) {
             node = node.next;
         }
 
-        ListNode temp = node; // save off node at n-1
+        LNode temp = node; // save off node at n-1
         node = node.next.next; // get reference to n+1
         temp.next = node; // next of n-1 becomes n+1
         length --;
@@ -135,7 +135,7 @@ class LinkedList {
     public boolean contains(int value){
 
         // loop through entire llist starting at head
-        ListNode node = head;
+        LNode node = head;
         while (node != null) {
             if (node.value == value) return true; // target found
             node = node.next;
