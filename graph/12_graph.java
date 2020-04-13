@@ -86,7 +86,7 @@ class Graph {
   }
 
   public boolean removeVertex(Integer id) {
-    // YOUR WORK HERE
+    storage.remove(id); // no need to check if map contains the id first, remove() returns null for key not found
     return true;
   }
 
