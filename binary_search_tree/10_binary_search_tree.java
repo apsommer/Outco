@@ -117,10 +117,27 @@ class BinarySearchTree {
   // Time Complexity:
   // Auxiliary Space Complexity:
   public boolean search(int value) {
-    // YOUR WORK HERE
+
+    // catch empty tree
+    if (root == null) return false;
+
+    // loop through nodes
+    TreeNode current = root;
+    while (current != null) {
+
+      // target found
+      if (value == current.value) return true;
+
+      // move right
+      if (value > current.value) current = current.right;
+
+      // move left
+      else current = current.left;
+    }
+
+    // we exhausted all valid nodes in tree and did not find a match
     return false;
   }
-
 }
 
 
