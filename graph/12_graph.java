@@ -86,8 +86,17 @@ class Graph {
   }
 
   public boolean removeVertex(Integer id) {
-    storage.remove(id); // no need to check if map contains the id first, remove() returns null for key not found
-    return true;
+
+    // check the hashmap for this vertex
+    if (storage.containsKey(id)) {
+
+      // remove successful
+      storage.remove(id);
+      return true;
+    }
+
+    // vertex does not exist, therefore it can not be removed
+    return false;
   }
 
   //   Time Complexity:
