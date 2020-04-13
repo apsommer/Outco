@@ -77,10 +77,11 @@ class Graph {
 
   public Map<Integer, List<Integer>> storage = new HashMap<>();
 
-  //   Time Complexity:
-  //   Auxiliary Space Complexity:
+  //   Time Complexity: O(1)
+  //   Auxiliary Space Complexity: O(1)
   public boolean addVertex(Integer id) {
-    // YOUR WORK HERE
+
+    storage.put(id, new ArrayList<Integer>());
     return true;
   }
 
