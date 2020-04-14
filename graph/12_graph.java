@@ -141,15 +141,17 @@ class Graph {
     return storage.containsKey(id);
   }
 
-  // Time Complexity:
-  // Auxiliary Space Complexity:
+  // Time Complexity: O(1) for hashmap lookup
+  // Auxiliary Space Complexity: O(1) for new list regardless of V and E sizes
   public List<Integer> neighbors(Integer id) {
-    // YOUR WORK HERE
-    return new ArrayList<Integer>();
+
+    // create empty list
+    List<Integer> neighbors;
+    neighbors = storage.get(id); // retrieve the neighbors, returns null for key not found
+    return neighbors;
   }
 
 }
-
 
 ////////////////////////////////////////////////////////////
 ///////////////  DO NOT TOUCH TEST BELOW!!!  ///////////////
