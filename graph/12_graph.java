@@ -113,8 +113,8 @@ class Graph {
     return false;
   }
 
-  // Time Complexity:
-  // Auxiliary Space Complexity:
+  // Time Complexity: O(d) linear with respect to vertex degree since the list of edges is iterated
+  // Auxiliary Space Complexity: O(1) we are only accessing entities that already exists, no auxiliary space needed
   public boolean removeEdge(Integer id1, Integer id2) {
 
     // check both vertices id1 and id2 exist, then remove the edge from id1 edge list
