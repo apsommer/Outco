@@ -135,11 +135,10 @@ class Graph {
     return false;
   }
 
-  //   Time Complexity:
-  //   Auxiliary Space Complexity:
+  //   Time Complexity: O(1) for hashmap lookup
+  //   Auxiliary Space Complexity: O(1)
   public boolean isVertex(Integer id) {
-    // YOUR WORK HERE
-    return true;
+    return storage.containsKey(id);
   }
 
   // Time Complexity:
