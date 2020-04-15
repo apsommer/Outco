@@ -315,8 +315,14 @@ class Matrix {
     }
 
     public boolean insert(int i, int j, int val) {
-    //YOUR WORK HERE
-    return false;
+
+        // if the coordinates are valid then insert, else return false
+        if (isValid(i, j)) {
+            storage[i][j] = val;
+            return true;
+        }
+
+        return false;
     }
 
     public int retrieve(int i, int j) {
