@@ -288,6 +288,16 @@ class Matrix {
     public int[][] getStorage() {return this.storage;}
 
     public void print() {
+
+        System.out.print("[");
+        for (int i = 0; i < m; i ++) {
+            
+            for (int j = 0; j < n; j ++) {
+                System.out.print(" " + storage[i][j]);
+            }
+            System.out.print("\n");
+        }
+        System.out.print("]");
     }
 
     public boolean isValid(int i, int j) {
