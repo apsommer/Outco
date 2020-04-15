@@ -10,7 +10,7 @@ import java.util.Map;
  * a top down approach, typically using recursion, and a cache.
  *
  * Tabulation: The solutions to subproblems build upon one another, this is a bottom up approach. Uses an
- * array or matrix to track solutions to subproblems, adding them up to a final answer.
+ * array or com.sommerengineering.library.matrix to track solutions to subproblems, adding them up to a final answer.
  *
  * **/
 

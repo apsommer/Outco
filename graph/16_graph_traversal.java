@@ -159,13 +159,13 @@ class DetectCycleInGraph {
   *  Friend Circles
   *
   *  A friend circle is a group of people who are direct or indirect friends.
-  *  Given a NxN bitset matrix, where a 1 in the i,j coordinate signifies a
+  *  Given a NxN bitset com.sommerengineering.library.matrix, where a 1 in the i,j coordinate signifies a
   *  friendship between person i and person j, determine how many circles of
   *  friends there are.
   *
   *  Parameters:
   *
-  *  Input: Graph: [[Integer]] (adjacency matrix)
+  *  Input: Graph: [[Integer]] (adjacency com.sommerengineering.library.matrix)
   *  Output: Integer
   *
   *  Example:
@@ -198,7 +198,7 @@ class FriendCircles {
   *
   *  Parameters:
   *
-  *  Input: Graph: [[Integer]] (adjacency matrix)
+  *  Input: Graph: [[Integer]] (adjacency com.sommerengineering.library.matrix)
   *  Output: Integer
   *
   *  Example:
@@ -508,7 +508,7 @@ class Main2 {
       }
     });
 
-    assertTest(testCount, "should work for an empty matrix", new Test() {
+    assertTest(testCount, "should work for an empty com.sommerengineering.library.matrix", new Test() {
       public boolean execute() {
         FriendCircles fc = new FriendCircles();
         Integer solution = fc.compute(new int[][] {});

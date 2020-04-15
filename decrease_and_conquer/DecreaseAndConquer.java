@@ -12,7 +12,7 @@ Divide and Conquer:
     the subproblems are solved independently
     (optionally) the results are combined back together.
     implemented with multiple recursion or a stack and while loop
-    e.g., Quicksort, Mergesort, Strassen matrix multiplication
+    e.g., Quicksort, Mergesort, Strassen com.sommerengineering.library.matrix multiplication
 
 Decrease and Conquer:
 

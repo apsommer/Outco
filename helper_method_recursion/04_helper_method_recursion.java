@@ -204,8 +204,8 @@ class ArrayPairs {
  * Input:   two-dimensional Integer Array
  * Output:  Array of Integers
  *
- * Example: int matrix[][]= {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
- *          Flatten.compute(matrix) =>
+ * Example: int com.sommerengineering.library.matrix[][]= {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+ *          Flatten.compute(com.sommerengineering.library.matrix) =>
  *          {1, 2, 3, 4, 5, 6, 7, 8, 9}
  */
 class Flatten {

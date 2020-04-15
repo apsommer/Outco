@@ -1,3 +1,5 @@
+package com.sommerengineering.library.matrix;
+
 /*
  *  Homework 17 - Matrices
  *
@@ -282,18 +284,16 @@ class Matrix {
     }
 
     public int getM() {return this.m;}
-
     public int getN() {return this.n;}
-
     public int[][] getStorage() {return this.storage;}
-
 
     public void print() {
     }
 
     public boolean isValid(int i, int j) {
-    //YOUR WORK HERE
-    return false;
+
+        // check that the coordinates are within the matrix bounds
+        return (i >= 0 && i < m && j >= 0 && j < n);
     }
 
     public void initialize(int[][] arrayOfArrays) {
