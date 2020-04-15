@@ -326,8 +326,10 @@ class Matrix {
     }
 
     public int retrieve(int i, int j) {
-    //YOUR WORK HERE
-    return Integer.MIN_VALUE;
+
+        // if the coordinates are valid then retrieve, else return -2^31 (minimum possible int value)
+        if (isValid(i, j)) return storage[i][j];
+        return Integer.MIN_VALUE;
     }
 
     public void scale(int factor) {
