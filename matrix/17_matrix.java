@@ -291,7 +291,7 @@ class Matrix {
 
         System.out.print("[");
         for (int i = 0; i < m; i ++) {
-            
+
             for (int j = 0; j < n; j ++) {
                 System.out.print(" " + storage[i][j]);
             }
@@ -307,6 +307,11 @@ class Matrix {
     }
 
     public void initialize(int[][] arrayOfArrays) {
+
+        // simply overwrite the member variables
+        storage = arrayOfArrays;
+        m = arrayOfArrays.length;
+        n = arrayOfArrays[0].length;
     }
 
     public boolean insert(int i, int j, int val) {
