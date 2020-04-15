@@ -343,7 +343,13 @@ class Matrix {
     }
 
     public void fill(int val) {
-    //YOUR WORK HERE
+
+        // loop through each value and replace it with the new val
+        for (int i = 0; i < m; i ++) {
+            for (int j = 0; j < n; j ++) {
+                storage[i][j] = val;
+            }
+        }
     }
 
     public int[] flatten() {
