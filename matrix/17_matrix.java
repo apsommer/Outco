@@ -289,15 +289,14 @@ class Matrix {
 
     public void print() {
 
-        System.out.print("[");
         for (int i = 0; i < m; i ++) {
 
             for (int j = 0; j < n; j ++) {
-                System.out.print(" " + storage[i][j]);
+                System.out.print(storage[i][j] + " ");
             }
             System.out.print("\n");
         }
-        System.out.print("]");
+
     }
 
     public boolean isValid(int i, int j) {
@@ -369,8 +368,27 @@ class Matrix {
     }
 
     public Matrix slice(int[] rowRange, int[] colRange) {
-    //YOUR WORK HERE
-    return null;
+
+        // catch bad input: return original matrix if slice is out of bounds
+        if (rowRange[1] - rowRange[0] > m || colRange[1] - colRange[0] > n) return this;
+
+        // create a new Matrix object and coordinate trackers
+        Matrix result = new Matrix(rowRange[1] - rowRange[0], colRange[1] - colRange[0]);
+        int x = 0;
+        int y = 0;
+
+        // loop through the original array and assign values to the new slice
+        for (int i = rowRange[0]; i < rowRange[1]; i ++) {
+            for (int j = colRange[0]; j < colRange[1]; j ++) {
+                result.insert(x, y, storage[i][j]);
+                y ++;
+            }
+            // reset the column tracker and increment the row tracker
+            y = 0;
+            x ++;
+        }
+
+        return result;
     }
 
     public Matrix transpose() {
