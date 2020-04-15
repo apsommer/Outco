@@ -353,8 +353,19 @@ class Matrix {
     }
 
     public int[] flatten() {
-    //YOUR WORK HERE
-    return new int[]{};
+
+        // instantiate a new 1D array
+        int[] result = new int[m*n];
+        int k = 0;
+
+        // loop through each value and store it in the 1D array
+        for (int i = 0; i < m; i ++) {
+            for (int j = 0; j < n; j ++) {
+                result[k] = storage[i][j];
+                k ++;
+            }
+        }
+        return result;
     }
 
     public Matrix slice(int[] rowRange, int[] colRange) {
