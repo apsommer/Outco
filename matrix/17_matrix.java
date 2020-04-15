@@ -390,10 +390,28 @@ class Matrix {
 
         return result;
     }
-
+    
     public Matrix transpose() {
-    //YOUR WORK HERE
-    return null;
+
+        // transpose is (i,j) -> (j,i)
+
+        // instantiate new Matrix object to hold the transpose
+        Matrix result = new Matrix(n, m);
+        int x = 0;
+        int y = 0;
+
+        // loop through the original matrix row by column
+        for (int i = 0; i < m; i ++) {
+            for (int j = 0; j < n; j ++) {
+                result.insert(x, y, storage[i][j]);
+                x ++; // increment row
+            }
+
+            x = 0; // reset row counter
+            y ++; // increment column
+        }
+
+        return result;
     }
 
     public Matrix multiply(Matrix matrix) {
