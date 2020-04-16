@@ -113,21 +113,49 @@ class Heap {
     return storage.size();
   }
 
-  public static void main(String[] args) {
-
-
-  }
-
   // Time Complexity:
   // Auxiliary Space Complexity:
   public void insert(int value){
-    //YOUR WORK HERE
+    // insert always occurs on the first open child with respect to BFS, conveniently last element in storage list
+    storage.add(value);
+    bubbleUp(this.size()-1); // ensure heap property is satisfied by bubbling up this new element
   }
 
-  // Time Complexity:
-  // Auxiliary Space Complexity:
-  public void bubbleUp(int index){
-    //YOUR WORK HERE
+  private int getParent(int child) {
+
+    // for this array implementation, left child is always 2p+1 and right child is always 2p+2
+    if (child % 2 == 0) return (child-2)/2;
+    else return (child-1)/2;
+  }
+
+  // Time Complexity: O(log(N)) swaps occur on each level of binary heap, and levels = log(N)
+  // Auxiliary Space Complexity: O(1) for a few references irrespective of N
+  public void bubbleUp(int child){
+
+    // get the parent index for this child
+    int parent = getParent(child);
+
+    // move this element up the heap to its correct position relative to the heap property
+    while (parent >= 0) {
+
+      // heap condition is violated for this parent/child relationship
+      if (!compare(parent, child)) {
+
+        // swap the two elements
+        swap(parent, child);
+
+        // child pointer becomes its parent pointer, and the parent pointer becomes its parent
+        child = parent;
+        parent = getParent(parent);
+
+      // heap condition satisfied
+      } else return;
+    }
+  }
+
+  public static void main(String[] args) {
+
+
   }
 
   // Time Complexity:
