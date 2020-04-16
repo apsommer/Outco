@@ -107,16 +107,15 @@ class Heap {
     return storage.get(0);
   }
 
+  // Time Complexity: O(1) size property is attribute of list/array
+  // Auxiliary Space Complexity: O(1)
+  public int size(){
+    return storage.size();
+  }
+
   public static void main(String[] args) {
 
 
-  }
-
-  // Time Complexity:
-  // Auxiliary Space Complexity:
-  public int size(){
-    //YOUR WORK HERE
-    return -1;
   }
 
   // Time Complexity:
