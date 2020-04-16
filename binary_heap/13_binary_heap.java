@@ -92,15 +92,18 @@ class Heap {
     else return (storage.get(a) > storage.get(b));
   }
 
+  // Time Complexity: O(N) to add element into list
+  // Auxiliary Space Complexity: O(1) for a temporary int
+  public void swap(int a, int b){
+
+    Integer temp = storage.get(a); // save off A
+    storage.set(a, storage.get(b)); // set A to B
+    storage.set(b, temp); // set B to old A
+  }
+
   public static void main(String[] args) {
 
 
-  }
-
-  // Time Complexity:
-  // Auxiliary Space Complexity:
-  public void swap(int index1, int index2){
-    //YOUR WORK HERE
   }
 
   // Time Complexity:
