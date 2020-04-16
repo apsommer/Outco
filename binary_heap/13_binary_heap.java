@@ -101,16 +101,15 @@ class Heap {
     storage.set(b, temp); // set B to old A
   }
 
+  // Time Complexity: O(1) array retrieval is constant
+  // Auxiliary Space Complexity: O(1)
+  public int peak(){
+    return storage.get(0);
+  }
+
   public static void main(String[] args) {
 
 
-  }
-
-  // Time Complexity:
-  // Auxiliary Space Complexity:
-  public int peak(){
-    //YOUR WORK HERE
-    return -1;
   }
 
   // Time Complexity:
