@@ -88,7 +88,7 @@ class Heap {
   // Auxiliary Space Complexity: O(1)
   public boolean compare(int a, int b){
 
-    if (type.equals("min")) return (storage.get(a) <= storage.get(b));
+    if (type.equals("min")) return (storage.get(a) < storage.get(b));
     else return (storage.get(a) > storage.get(b));
   }
 
@@ -172,10 +172,41 @@ class Heap {
 
   }
 
+  private int getChild(int parent) {
+
+    // for this array implementation, left child is always 2p+1 and right child is always 2p+2
+    int left = 2*parent + 1;
+    int right = 2*parent + 2;
+
+    if (left > size() - 1) return left; // left child is off the array, therefore right child must be as well
+    if (right > size() - 1) return left; // right child is off the array
+    if (compare(left, right)) return left; // left child is will satisfy heap property
+    else return right; // right child will satisfy the heap property
+
+  }
+
   // Time Complexity:
   // Auxiliary Space Complexity:
-  public void bubbleDown(int index){
-    //YOUR WORK HERE
+  public void bubbleDown(int parent){
+
+    int child = getChild(parent);
+
+    // move this element down the heap to its correct position relative to the heap property
+    while (child < size()) {
+
+      // heap condition is violated for this parent/child relationship
+      if (!compare(parent, child)) {
+
+        // swap the two elements
+        swap(parent, child);
+
+        // parent becomes its child, and the child becomes its child
+        parent = child;
+        child = getChild(child);
+
+      // heap condition satisfied
+      } else return;
+    }
   }
 
   // Time Complexity:
