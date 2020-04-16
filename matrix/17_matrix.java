@@ -390,7 +390,7 @@ class Matrix {
 
         return result;
     }
-    
+
     public Matrix transpose() {
 
         // transpose is (i,j) -> (j,i)
@@ -415,8 +415,28 @@ class Matrix {
     }
 
     public Matrix multiply(Matrix matrix) {
-    //YOUR WORK HERE
-    return null;
+
+        // validate inputs, original matrix is m x n, second matrix is n x k, result is m x k
+        if (n != matrix.m) return null;
+
+        // instantiate a new matrix
+        Matrix result = new Matrix(m, matrix.n);
+        int sum = 0;
+
+        // loop through every element of both matrices in the correct order
+        for (int i = 0; i < m; i++) {
+            for (int k = 0; k < matrix.n; k ++) {
+                for (int j = 0; j < n; j++) {
+                    sum += storage[i][j] * matrix.storage[j][k];
+                }
+
+                // add sum of element multiplication into results matrix
+                result.insert(i, k, sum);
+                sum = 0;
+            }
+        }
+
+        return result;
     }
 }
 
@@ -719,6 +739,7 @@ class Main{
    private static boolean multiplyTest1() {
      Matrix matrix1 = new Matrix(1, 1);
      Matrix matrix2 = new Matrix(1, 1);
+
      matrix1.initialize(new int[][]{{4, 1, 3},
                                    {3, 2, 5}});
      matrix2.initialize(new int[][]{{8, 9},
