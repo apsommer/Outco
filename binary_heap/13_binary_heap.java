@@ -153,16 +153,23 @@ class Heap {
     }
   }
 
-  public static void main(String[] args) {
-
-
-  }
-
   // Time Complexity:
   // Auxiliary Space Complexity:
   public int removePeak(){
-    //YOUR WORK HERE
-    return -1;
+
+    // we can only remove from the first open child with respect to BFS, so swap the first (peak) and last element
+    swap(0, size()-1);
+    int peak = storage.remove(size()-1); // remove the last element and save it
+
+    // the root (peak) is now potentially violating the heap property, so bubble down
+    bubbleDown(0);
+
+    return peak;
+  }
+
+  public static void main(String[] args) {
+
+
   }
 
   // Time Complexity:
