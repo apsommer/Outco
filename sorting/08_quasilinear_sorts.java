@@ -1,3 +1,4 @@
+package com.sommerengineering.library.sorting;
 /**
  *  Homework 08 - Quasilinear Sorts
  *
@@ -37,7 +38,7 @@ class Mergesort{
 ////////////////////////////////////////////////////////////
 
 // use the Main class to run the test cases
-class Main {
+class Main2 {
   private int[] testCount;
 
   // an interface to perform tests
