@@ -167,11 +167,6 @@ class Heap {
     return peak;
   }
 
-  public static void main(String[] args) {
-
-
-  }
-
   private int getChild(int parent) {
 
     // for this array implementation, left child is always 2p+1 and right child is always 2p+2
@@ -185,8 +180,8 @@ class Heap {
 
   }
 
-  // Time Complexity:
-  // Auxiliary Space Complexity:
+  // Time Complexity: Slightly worse than O(log(N)) since we have to compare two children at each level, but not the whole heap
+  // Auxiliary Space Complexity: O(1)
   public void bubbleDown(int parent){
 
     int child = getChild(parent);
@@ -209,16 +204,30 @@ class Heap {
     }
   }
 
-  // Time Complexity:
-  // Auxiliary Space Complexity:
+  // Time Complexity: O(N) since the list must be searched to find the index of a given value
+  // Auxiliary Space Complexity: O(1)
   public boolean remove(int value){
-    //YOUR WORK HERE
-    return false;
+
+    // validate that value exists within heap
+    int index = storage.indexOf(value); // this line causes O(N)
+    if (index == -1) return false;
+
+    // the last element can be removed immediately
+    if (index == size() - 1) {
+      storage.remove(size()-1);
+      return true;
+    }
+
+    // swap this element with the last one to prepare for removal
+    swap(index, size()-1);
+    storage.remove(size()-1);
+
+    // rebalance the heap by either bubbling up, or down
+    bubbleUp(index);
+    bubbleDown(index);
+    return true;
   }
 }
-
-
-
 
 ////////////////////////////////////////////////////////////
 ///////////////  DO NOT TOUCH TEST BELOW!!!  ///////////////
