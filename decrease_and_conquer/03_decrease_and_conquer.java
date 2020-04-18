@@ -42,6 +42,7 @@ class Problems {
 
       mid = (start + end) / 2;
 
+      // move to right half
       if (arr[mid] == 0) {
 
         // catch array of all zeros
@@ -50,6 +51,8 @@ class Problems {
         // check if we are at the break point ..., 0, 1, ...
         if (arr[mid + 1] == 1) return arr.length - (mid + 1);
         else start = mid + 1;
+
+      // move to left half
       } else {
 
         // catch array of all ones
@@ -61,6 +64,7 @@ class Problems {
       }
     }
 
+    // this line will never be reached
     return -1;
     }
 
@@ -87,8 +91,34 @@ class Problems {
  */
 
 public static int closestValue(int[] arr, int target) {
-  // YOUR WORK HERE
-  return -1;
+
+  // this is standard binary search with an extra check on moving left
+
+  int start = 0;
+  int end = arr.length - 1;
+  int mid;
+
+  while (end - start != 0) {
+
+    // calculate middle index using integer division
+    mid = (end + start)/2;
+
+    // if target found return value
+    if (target == arr[mid]) return arr[mid];
+
+    // if the target is less than the middle AND there are at least 3 element under consideration AND the difference
+    // between the target and mid-1 and mid+1 elements are equal (meaning the target is exactly between), then move left
+    if (target < arr[mid] || (end - start) > 2 && target - arr[mid-1] == arr[mid+1] - target) {
+      end = mid - 1;
+    }
+
+    // move right
+    else start = mid + 1;
+
+  }
+
+  // this line is only reached if we have reduced down to a single element, both start and end are the same index
+  return arr[start];
 }
 
 
