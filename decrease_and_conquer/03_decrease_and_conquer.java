@@ -289,12 +289,6 @@ public static int greaterValues(int[] arr, int target) {
  * `[7, 8, 9, 10, 1, 2, 3, 4, 5, 6], 9 --> true`
  */
 
-public static void main(String[] args) {
-
-    System.out.println(Problems.rotatedArraySearch(new int[] {7, 8, 9, 10, 1, 2, 3, 4, 5, 6}, 7));
-
-}
-
 
 public static boolean rotatedArraySearch(int[] arr, int target) {
 
@@ -343,10 +337,30 @@ public static boolean rotatedArraySearch(int[] arr, int target) {
   return arr[start] == target;
 }
 
+  public static void main(String[] args) {
 
+    System.out.println(Problems.binarySearch(new int[] {2, 3, 4, 7, 8, 9, 12}, 0, 6, 11));
+
+  }
+
+// binary search using pure recursion
 private static boolean binarySearch(int[] nums, int start, int end, int target) {
-  // YOUR WORK HERE
-  return false;
+
+  // calculate middle index for this range
+  int mid = (start + end)/2;
+
+  // base case: target found
+  if (nums[mid] == target) return true;
+
+  // base case: elements exhausted
+  if (start == end) return false;
+
+  // move left
+  if (target < nums[mid]) return binarySearch(nums, start, mid - 1, target);
+
+  // move right
+  else return binarySearch(nums, mid + 1, end, target);
+
 }
 
 
@@ -379,9 +393,6 @@ public static int multiplicationRussianPeasant(int a, int b) {
 }
 
 }
-
-
-
 
 
 ////////////////////////////////////////////////////////////
