@@ -5,9 +5,6 @@ package com.sommerengineering.library.decrease_and_conquer;
  * Utilize the decrease and conquer pattern to solve these problems.
  */
 
-import java.io.*;
-import java.util.*;
-
 class Problems {
 
 /*
@@ -144,10 +141,52 @@ public static int closestValue(int[] arr, int target) {
  * `14856 --> 121.885192
  */
 
+public static void main(String[] args) {
 
+
+  Double output = Problems.squareRoot(4.0); // 2.0000
+  System.out.println(output);
+
+  output = Problems.squareRoot(98.0); //9.899495
+  System.out.println(output);
+
+  output = Problems.squareRoot(14856.0); // 121.885192
+  System.out.println(output);
+}
+
+// time constraint of log(N) implies binary search!
 public static Double squareRoot(Double n) {
-  // YOUR WORK HERE
-  return -1.0;
+
+  return new Double(42);
+}
+
+
+public static Double squareRootBruteForce(Double n) {
+
+  Double total = 1d;
+  Double sqrt = 1d;
+  Double delta = 1d;
+
+  // six decimal places
+  for (int digit = 0; digit < 6; digit ++) {
+
+    // increase the square until the input is exceeded
+    while (total < n) {
+
+      total = sqrt * sqrt;
+      sqrt += delta;
+    }
+
+    // subtract off the last delta added
+    sqrt -= delta;
+
+    // move to the next decimal point
+    delta = delta/10;
+    total = 0d;
+
+  }
+
+  return sqrt;
 }
 
 
