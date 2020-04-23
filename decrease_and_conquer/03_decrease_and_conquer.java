@@ -141,19 +141,6 @@ public static int closestValue(int[] arr, int target) {
  * `14856 --> 121.885192
  */
 
-public static void main(String[] args) {
-
-
-//  Double output = Problems.squareRoot(4.0); // 2.0000
-//  System.out.println(output);
-
-  Double output = Problems.squareRoot(98.0); // 9.899495
-  System.out.println(output);
-
-//  output = Problems.squareRoot(14856.0); // 121.885192
-//  System.out.println(output);
-}
-
 // member variables for square root binary search
 static Double target;
 static int precision;
@@ -224,8 +211,8 @@ public static Double squareRootBruteForce(Double n) {
 
 /*
  * Greater Values
- *
- * *Given an sorted array of integers, and a target value return the number of values greater the target.*
+
+ * *Given a sorted array of integers, and a target value return the number of values greater the target.*
  *
  * **Parameters**
  * Input: arr {Array of Integers}
@@ -243,10 +230,44 @@ public static Double squareRootBruteForce(Double n) {
  * `[1, 10, 22, 59, 67, 72, 100], 13 --> 5`
  *
 */
+public static void main(String[] args) {
 
+  int[] input = new int[]{1, 2, 3};
+  System.out.println(Problems.greaterValues(new int[] {1, 2, 3, 5, 5, 7, 9, 10, 11}, 5));
+
+}
+
+
+// another binary search
 public static int greaterValues(int[] arr, int target) {
-  // YOUR WORK HERE
-  return -1;
+
+  // check target against lower bound of the sorted array
+  if (target >= arr[arr.length-1]) return 0;
+
+  // define some index pointers
+  int start = 0;
+  int end = arr.length - 1;
+  int mid;
+
+  // standard binary search
+  while (start != end) {
+
+    // calculate a middle index using integer division
+    mid = (start + end)/2;
+
+    // move left
+    if (target < arr[mid]) {
+      end = mid - 1;
+
+    // move right
+    // intentionally includes target == arr[mid] to handle duplicates in the sorted input
+    } else {
+      start = mid + 1;
+    }
+  }
+
+  // if this line is reached then start index = end index, and this element is the closest value to the target
+  return arr.length - start;
 }
 
 
