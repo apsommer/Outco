@@ -144,23 +144,56 @@ public static int closestValue(int[] arr, int target) {
 public static void main(String[] args) {
 
 
-  Double output = Problems.squareRoot(4.0); // 2.0000
+//  Double output = Problems.squareRoot(4.0); // 2.0000
+//  System.out.println(output);
+
+  Double output = Problems.squareRoot(98.0); // 9.899495
   System.out.println(output);
 
-  output = Problems.squareRoot(98.0); //9.899495
-  System.out.println(output);
-
-  output = Problems.squareRoot(14856.0); // 121.885192
-  System.out.println(output);
+//  output = Problems.squareRoot(14856.0); // 121.885192
+//  System.out.println(output);
 }
+
+// member variables for square root binary search
+static Double target;
+static int precision;
 
 // time constraint of log(N) implies binary search!
 public static Double squareRoot(Double n) {
 
-  return new Double(42);
+  // save off n as a global variable
+  target = n;
+  precision = 6;
+
+  // kick off recursion using 6 decimal precision
+  return rootHelper(0d, n);
 }
 
+private static Double rootHelper(Double start, Double end) {
 
+  // calculate a midpoint
+  Double mid = (end + start)/2;
+
+  // base case: precision achieved
+  // if the difference between the target value, and the square of this mid, is within the defined precision ...
+  if (Math.abs(target - (mid*mid)) < Math.pow(10, -precision)) {
+
+    // dirty trick here that breaks down on edge cases
+    // multiply the mid (9.82348329495968) by 10^precision, round it, divide by 10^precision
+    return Math.round(mid * Math.pow(10, precision)) / Math.pow(10, precision);
+  }
+
+  // move left
+  if ((mid*mid) > target) {
+    return rootHelper(start, mid);
+
+  // move right
+  } else {
+    return rootHelper(mid, end);
+  }
+}
+
+// achieves solution in ~ O(N) time
 public static Double squareRootBruteForce(Double n) {
 
   Double total = 1d;
@@ -183,7 +216,6 @@ public static Double squareRootBruteForce(Double n) {
     // move to the next decimal point
     delta = delta/10;
     total = 0d;
-
   }
 
   return sqrt;
