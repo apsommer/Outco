@@ -230,13 +230,6 @@ public static Double squareRootBruteForce(Double n) {
  * `[1, 10, 22, 59, 67, 72, 100], 13 --> 5`
  *
 */
-public static void main(String[] args) {
-
-  int[] input = new int[]{1, 2, 3};
-  System.out.println(Problems.greaterValues(new int[] {1, 2, 3, 5, 5, 7, 9, 10, 11}, 5));
-
-}
-
 
 // another binary search
 public static int greaterValues(int[] arr, int target) {
@@ -274,7 +267,7 @@ public static int greaterValues(int[] arr, int target) {
 /*
  * Sorted and Rotated Array [Extra Credit]
  *
- * *Given a array that is sorted an rotated, find out if a target value exists in the array.*
+ * *Given a array that is sorted and rotated, find out if a target value exists in the array.*
  *
  * An sorted array is rotated by taking an unknown amount of values from the beginning and placing it at the end.
  *
@@ -296,9 +289,58 @@ public static int greaterValues(int[] arr, int target) {
  * `[7, 8, 9, 10, 1, 2, 3, 4, 5, 6], 9 --> true`
  */
 
-public static boolean rotatedArraySearch(int[] nums, int target) {
-  // YOUR WORK HERE
-  return false;
+public static void main(String[] args) {
+
+    System.out.println(Problems.rotatedArraySearch(new int[] {7, 8, 9, 10, 1, 2, 3, 4, 5, 6}, 7));
+
+}
+
+
+public static boolean rotatedArraySearch(int[] arr, int target) {
+
+  // this is a binary search with extra conditions to consider on the base array
+
+  int start = 0;
+  int end = arr.length - 1;
+  int mid;
+
+  while (start != end) {
+
+    // calculate the middle index for this section
+    mid = (start + end)/2;
+
+    if (arr[mid] == target) return true;
+
+    // determine which side has the discontinuity (step)
+    // left side has a clean ascending sort
+    if (arr[start] < arr[mid]) {
+
+      // move right
+      if (target > arr[mid]) {
+        start = mid + 1;
+
+      // move left
+      } else {
+        end = mid - 1;
+      }
+
+    // right side has a clean ascending sort
+    } else {
+
+      // move left
+      if (target > arr[end]) {
+        end = mid - 1;
+
+      // move right
+      } else {
+        start = mid + 1;
+      }
+    }
+
+  }
+
+  // one last check, we are down to one element, if this is not the target then it does not exist in the input array
+  return arr[start] == target;
 }
 
 
