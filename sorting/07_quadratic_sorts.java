@@ -39,35 +39,55 @@ import java.util.*;
 
 class BasicSort {
 
-  public static void main(String[] args) {
+  // insertion is the best choice from these basic quadratic sorts ... it is about twice as fast, on average, relative
+  // to selection or bubble
 
-    BasicSort basicSort = new BasicSort();
-    int[] input = new int[1000];
-    for (int i = 0 ; i < input.length ; i++) {
-      input[i] = (int) Math.floor(Math.random() * 1000);
-    }
+  // all these basic sorts can only handle n < 10, the N^2 time makes any larger too inefficient
 
-    int[] solution = new int[1000];
-    System.arraycopy(input, 0, solution, 0, input.length);
-    input = basicSort.selection(input);
-
-    for (int i : input) {
-      System.out.print(i + ", ");
-    }
-
-
-    System.out.println("isSorted? " + Main.isSorted(input));
-    Arrays.sort(solution);
-
-  }
-
-  // Time Complexity:
-  // Auxiliary Space Complexity:
+  // Time Complexity: O(N^2) for worst and average, reduces to O(N) if the input array is already sorted
+  // Auxiliary Space Complexity: O(1) in-place
+  // stable, and is streamable as new elements are obtained they can be added to the sorted partition
+  // good choice (fast) if the elements are only a few places away from their final positions, reduces to O(kN) where
+  // k = average distance elements are away from their final positions
   public static int[] insertion(int[] input) {
 
-    return new int[0];
-  }
+    // consider two partitions in the array: sorted at beginning, unsorted at end
+    // insertion sort inserts element into the sorted position moving all elements in the sorted partition as needed
 
+    // in contrast, selection sort selects the minimum in the unsorted partition and there is only one place it can go:
+    // at the end of the sorted section, this follows from the definition of local minimum
+
+    int temp;
+
+    // loop through each element once and insert it into the sorted partition
+    for (int i = 1; i < input.length; i ++) {
+
+      // loop through just the sorted partition
+      for (int j = 0; j < i; j ++) {
+
+        // the correct, sorted position for this i element is located in the sorted partition
+        if (input[i] < input[j]) {
+
+          // save off the element to be inserted
+          temp = input[i];
+
+          // all elements downstream of this position must be nudged forward one index to make room
+          for (int k = i; k > j; k --) {
+            input[k] = input[k-1];
+          }
+
+          // insert this element into its sorted position within the sorted partition
+          input[j] = temp;
+
+          // no need to consider other j's in the sorted portion, move to next element i
+          break;
+        }
+      }
+    }
+
+    // this is an in-place sort, return the sorted input array
+    return input;
+  }
 
   // Time Complexity: O(N^2) in best, average, and worst since the minimum must be searched every iteration regardless
   // Auxiliary Space Complexity: O(1) this is in-place
