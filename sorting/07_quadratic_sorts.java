@@ -39,29 +39,75 @@ import java.util.*;
 
 class BasicSort {
 
+  public static void main(String[] args) {
+
+    BasicSort basicSort = new BasicSort();
+    int[] input = new int[1000];
+    for (int i = 0 ; i < input.length ; i++) {
+      input[i] = (int) Math.floor(Math.random() * 1000);
+    }
+
+    int[] solution = new int[1000];
+    System.arraycopy(input, 0, solution, 0, input.length);
+    input = basicSort.selection(input);
+
+    for (int i : input) {
+      System.out.print(i + ", ");
+    }
+
+
+    System.out.println("isSorted? " + Main.isSorted(input));
+    Arrays.sort(solution);
+
+  }
+
   // Time Complexity:
   // Auxiliary Space Complexity:
   public static int[] insertion(int[] input) {
-    // YOUR WORK HERE
+
     return new int[0];
   }
 
 
-  // Time Complexity:
-  // Auxiliary Space Complexity:
+  // Time Complexity: O(N^2) in best, average, and worst since the minimum must be searched every iteration regardless
+  // Auxiliary Space Complexity: O(1) this is in-place
+  // not stable!
   public static int[] selection(int[] input) {
-    // YOUR WORK HERE
-    return new int[0];
+
+    // loop through array and find the minimum value, put this minimum value at the beginning of the array, now the first
+    // element is sorted so we don't need to consider it anymore, find the next minimum value ... continue
+
+    // selection sort "selects the minimum value and puts it in its correct position"
+    // it accomplishes this by splitting the array into two partitions: sorted at the front and unsorted in the back
+    // one element is added to the sorted side for each iteration, then repeat
+
+    int min, temp;
+
+    // master loop identifies the boundary between sorted and unsorted partitions
+    for (int i = 0; i < input.length - 1; i ++) {
+
+      // start of the unsorted partition
+      min = i;
+
+      // find the minimum value in the unsorted partition
+      for (int j = i + 1; j < input.length; j ++) {
+        if (input[j] < input[min]) min = j;
+      }
+
+      // move this minimum value to last element in the sorted section
+      temp = input[i];
+      input[i] = input[min];
+      input[min] = temp;
+    }
+
+    // this sort is in-place, return the sorted input
+    return input;
   }
 
-  public static void main(String[] args) {
 
-
-  }
-
-
-  // Time Complexity: O(N^2)
+  // Time Complexity: O(N^2) for worst and average, O(N) for best case
   // Auxiliary Space Complexity: O(1)
+  // this is a stable sort
   public static int[] bubble(int[] input) {
 
     // keep a "did swap" flag
@@ -253,13 +299,14 @@ class Main {
   }
 
   // checks if array is sorted in linear time
-  private static boolean isSorted(int[] input) {
+  public static boolean isSorted(int[] input) {
     if (input.length < 2) {
       return true;
     }
 
     for (int i = 1 ; i < input.length ; i++) {
       if (input[i-1] > input[i]) {
+        System.out.println("bad elements, i = " + i + " input[i-1] = " + input[i-1] + " input[i] = " + input[i]);
         return false;
       }
     }
