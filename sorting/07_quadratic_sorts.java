@@ -54,12 +54,53 @@ class BasicSort {
     return new int[0];
   }
 
+  public static void main(String[] args) {
 
-  // Time Complexity:
-  // Auxiliary Space Complexity:
+
+  }
+
+
+  // Time Complexity: O(N^2)
+  // Auxiliary Space Complexity: O(1)
   public static int[] bubble(int[] input) {
-    // YOUR WORK HERE
-    return new int[0];
+
+    // keep a "did swap" flag
+    // compare each element to its neighbor, swap if necessary, continue until no swaps are made
+    // this "bubbles up" the largest element to the end on each iteration, therefore each iteration we don't need to
+    // consider the last element relative to the last iteration
+
+    // in the worst case we must do N passes through the array of N elements -> quadratic time
+    // this is an in-place sort so O(1) space
+
+    boolean isSwapMade = true;
+    int currentLength = input.length - 1;
+    int temp;
+
+    while (isSwapMade) {
+
+      // reset the flag for this iteration
+      isSwapMade = false;
+
+      for (int i = 0; i < currentLength; i ++) {
+
+        // swap if needed
+        if (input[i] > input[i+1]) {
+
+          // move the elements using a temp int
+          temp = input[i];
+          input[i] = input[i+1];
+          input[i+1] = temp;
+
+          // a swap has been made
+          isSwapMade = true;
+        }
+
+      }
+
+      currentLength --; // since we bubbled up the largest element for this pass
+    }
+
+    return input;
   }
 }
 

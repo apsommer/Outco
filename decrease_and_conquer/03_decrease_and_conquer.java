@@ -389,6 +389,7 @@ class Problems {
   }
 
   // member variable to hold sum of russian peasant recursion
+  // "halving" and "doubling" nature of this problem leads to O(logN) time
   private static int ans;
 
   public static int multiplicationRussianPeasant(int a, int b) {
@@ -410,8 +411,6 @@ class Problems {
   }
 
 }
-
-
 
 ////////////////////////////////////////////////////////////
 ///////////////  DO NOT TOUCH TEST BELOW!!!  ///////////////
