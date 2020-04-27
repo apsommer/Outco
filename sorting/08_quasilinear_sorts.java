@@ -24,6 +24,19 @@ import java.util.*;
 // Average Time Complexity: same as worst case
 // Average Total (Call Stack + Auxiliary) Space Complexity: same as worst case
 // Stability: yes, stable
+
+// quicksort is another popular NlogN sorting algorithm
+// quicksort is 2-3 times faster than mergesort on average, it is also in-place so we only need logN elements on the call
+// stack for auxiliary space
+// quicksort is not stable, also in worst case it degrades to quadratic
+
+// heapsort is another quasilinear sort that obviously requires a heap, extraction from a heap is logN time, and we need
+// to do this N times, resulting in O(NlogN) total time, can be implemented in O(1) time as it doesn't require recursion,
+// requires a heap, not stable, on average slower than quicksort due to extra comparisons on bubble up and bubble down
+
+// shellsort, comb sort, and Timsort are three more
+// Java framework Collections.sort() uses a modified mergesort for SDK < 6, SDK >= 6 uses Timsort
+
 class Mergesort{
 
   public static void main(String[] args) {
