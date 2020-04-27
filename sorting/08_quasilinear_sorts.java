@@ -17,7 +17,10 @@ package com.sommerengineering.library.sorting;
 import java.util.*;
 
 // Worst Time Complexity: O(NlogN) quasilinear sort, we must perform N comparison operations logN times
-// Worst Total (Call Stack + Auxiliary) Space Complexity: O(NlogN), we have N elements on the call stack at each level of recursion
+// Worst Total (Call Stack + Auxiliary) Space Complexity: O(N), we have N elements on the call stack at each level of
+// recursion logN times, and N for the final output, which is O(NlogN + N) -> O(NlogN) at first glance, however the depth
+// of recursion only goes down one side at a time rather than everything simultaneously, this "depth-first" recursion
+// pattern is bounded by O(3N) -> O(N)
 // Average Time Complexity: same as worst case
 // Average Total (Call Stack + Auxiliary) Space Complexity: same as worst case
 // Stability: yes, stable
