@@ -16,19 +16,95 @@ package com.sommerengineering.library.sorting;
 
 import java.util.*;
 
-// Worst Time Complexity:
-// Worst Total (Call Stack + Auxiliary) Space Complexity:
-// Average Time Complexity:
-// Average Total (Call Stack + Auxiliary) Space Complexity:
-// Stability:
+// Worst Time Complexity: O(NlogN) quasilinear sort, we must perform N comparison operations logN times
+// Worst Total (Call Stack + Auxiliary) Space Complexity: O(NlogN), we have N elements on the call stack at each level of recursion
+// Average Time Complexity: same as worst case
+// Average Total (Call Stack + Auxiliary) Space Complexity: same as worst case
+// Stability: yes, stable
 class Mergesort{
-  public static int[] compute(int[] input) {
-    return new int[0];
+
+  public static void main(String[] args) {
+
+    int[] input = new int[]{3, 9, 1, 4, 7};
+    int[] output = compute(input);
+    print(output);
+
   }
 
-  private static int[] merge(int[] array1, int[] array2){
-    // YOUR CODE HERE
-    return new int[0];
+  private static void print(int[] input) {
+
+    for (int i : input) {
+      System.out.print(i + ", ");
+    }
+
+    System.out.println();
+
+  }
+
+  public static int[] compute(int[] input) {
+
+    // base case: single element and empty array are already sorted
+    if (input.length <= 1) return input;
+
+    // split the array in half
+    int mid = input.length/2;
+    int[] left = Arrays.copyOfRange(input, 0, mid);
+    int[] right = Arrays.copyOfRange(input, mid, input.length);
+
+    // send left side through recursion
+    left = compute(left);
+
+    // send right side through recursion
+    right = compute(right);
+
+    // merge the left and right sides
+    return merge(left, right);
+  }
+
+  private static int[] merge(int[] array1, int[] array2) {
+
+    // left pointers for each array
+    int i1 = 0;
+    int i2 = 0;
+    int i = 0; // to track the output index
+
+    // create an output array
+    int[] output = new int[array1.length + array2.length];
+
+    // while statement that each left pointer is within bounds
+    while (i1 < array1.length && i2 < array2.length) {
+
+      // compare the elements in each array, put the minimum into the output
+      if (array1[i1] < array2[i2]) {
+
+        output[i] = array1[i1];
+        i1 ++;
+        i ++;
+
+      } else {
+
+        output[i] = array2[i2];
+        i2 ++;
+        i ++;
+
+      }
+    }
+
+    // one pointer did not exceed its array length, copy those elements into output
+    while (i1 < array1.length) {
+      output[i] = array1[i1];
+      i1 ++;
+      i ++;
+    }
+
+    // one pointer did not exceed its array length, copy those elements into output
+    while (i2 < array2.length) {
+      output[i] = array2[i2];
+      i2 ++;
+      i ++;
+    }
+
+    return output;
   }
 }
 

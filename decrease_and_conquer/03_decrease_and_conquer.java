@@ -5,6 +5,8 @@ package com.sommerengineering.library.decrease_and_conquer;
  * Utilize the decrease and conquer pattern to solve these problems.
  */
 
+import java.util.Arrays;
+
 class Problems {
 
   /*
@@ -385,6 +387,12 @@ class Problems {
   public static void main(String[] args) {
 
     System.out.println(Problems.multiplicationRussianPeasant(13 , 238)); // 3094
+
+    String[] apples = Arrays.copyOfRange(args, 0, 2);
+
+    for (String apple : apples) {
+      System.out.println(apple);
+    }
 
   }
 
