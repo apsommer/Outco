@@ -31,7 +31,7 @@ import java.util.*;
 // quicksort is not stable, also in worst case it degrades to quadratic
 
 // heapsort is another quasilinear sort that obviously requires a heap, extraction from a heap is logN time, and we need
-// to do this N times, resulting in O(NlogN) total time, can be implemented in O(1) time as it doesn't require recursion,
+// to do this N times, resulting in O(NlogN) total time, can be implemented in O(1) space as it doesn't require recursion,
 // requires a heap, not stable, on average slower than quicksort due to extra comparisons on bubble up and bubble down
 
 // shellsort, comb sort, and Timsort are three more
