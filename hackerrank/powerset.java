@@ -5,7 +5,13 @@ Powerset means every possible combination of characters, in their original order
 abc -> abc, ab, ac, bc, a, b, c
 
 */
+package com.sommerengineering.library.hackerrank;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 class Result {
 

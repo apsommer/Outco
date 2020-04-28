@@ -1,4 +1,6 @@
-class Result {
+package com.sommerengineering.library.hackerrank;
+
+class ResultReverse {
 
     /*
      * Complete the 'dnaComplement' function below.

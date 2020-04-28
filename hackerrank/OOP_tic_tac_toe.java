@@ -50,7 +50,7 @@ Scanner scanner = new Scanner(System.in);
 
 }
 
-public class Main {
+class Main {
 
   static void main(String[] args) {
     Game game = new Game();

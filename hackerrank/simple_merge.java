@@ -1,4 +1,9 @@
-class Result {
+package com.sommerengineering.library.hackerrank;
+
+import java.util.ArrayList;
+import java.util.List;
+
+class ResultMerge {
 
     /*
      * Complete the 'mergeArrays' function below.
